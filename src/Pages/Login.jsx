@@ -1,20 +1,43 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../Hooks/useAuth";
+import toast from "react-hot-toast";
 
 const Login = () => {
+  const { loginUser } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogIn = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    loginUser(email, password)
+      .then((res) => {
+        const user = res.user;
+        if (user.email) {
+          toast.success("Successfully toasted!");
+          navigate("/");
+        }
+      })
+      .catch((error) => {
+        toast.error(`${error.message}`);
+      });
+  };
   return (
     <div className="w-full max-w-md p-8 mt-10 space-y-3 rounded-xl border bg-white   font-sans mx-auto">
       <h1 className="text-3xl font-bold text-center text-indigo-600">Login</h1>
       {/* Input fields and the form started */}
-      <form action="" className="space-y-6">
+      <form onSubmit={handleLogIn} action="" className="space-y-6">
         <div className="space-y-2 text-sm">
-          <label htmlFor="username" className="block ">
-            Your name
+          <label htmlFor="email" className="block ">
+            Your Email
           </label>
           <input
             type="text"
-            name="username"
-            id="username"
-            placeholder="Username"
+            name="email"
+            id="email"
+            placeholder="Email"
             className="w-full px-4 py-3 rounded-md border border-indigo-300 focus:outline-none focus:ring  "
           />
         </div>
@@ -36,7 +59,10 @@ const Login = () => {
           </div>
         </div>
         {/* Sign in Button */}
-        <button className="text-lg rounded-xl relative p-[10px] block w-full bg-indigo-600 text-white border-y-4 duration-500 overflow-hidden focus:border-indigo-500 z-50 group">
+        <button
+          type="submit"
+          className="text-lg rounded-xl relative p-[10px] block w-full bg-indigo-600 text-white border-y-4 duration-500 overflow-hidden focus:border-indigo-500 z-50 group"
+        >
           Log In
           <span className="absolute opacity-0 group-hover:opacity-100 duration-100 group-hover:duration-1000 ease-out flex justify-center inset-0 items-center z-10 text-white">
             Log In

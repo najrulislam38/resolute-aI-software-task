@@ -1,9 +1,12 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import { BellIcon, MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const MainLayout = () => {
-  const user = false;
+  const { user } = useContext(AuthContext);
+  // console.log(user);
   return (
     <div className="flex">
       <div className="w-[100px]">
