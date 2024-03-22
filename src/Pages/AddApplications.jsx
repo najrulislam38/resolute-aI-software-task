@@ -5,10 +5,15 @@ const AddApplications = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   const onSubmit = (data) => {
     console.log(data);
+  };
+
+  const handleCancel = () => {
+    reset();
   };
 
   return (
@@ -26,14 +31,7 @@ const AddApplications = () => {
               >
                 Your Name
               </label>
-              {/* <input
-                type="text"
-                id="name"
-                name="name"
-                className="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                placeholder="Your Name"
-                required
-              /> */}
+
               <input
                 htmlFor="name"
                 {...register("name", { required: true })}
@@ -115,6 +113,12 @@ const AddApplications = () => {
               className="text-white bg-primary hover:bg-secondary focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg w-full sm:w-auto px-5 py-2.5 text-center "
             >
               Add Application
+            </button>
+            <button
+              onClick={() => handleCancel()}
+              className="text-white bg-gray-500 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg w-full sm:w-auto px-5 py-2.5 text-center ml-5 "
+            >
+              Cancel
             </button>
           </div>
         </form>

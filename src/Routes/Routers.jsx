@@ -4,6 +4,10 @@ import Home from "../Pages/Home";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import AddApplications from "../Pages/AddApplications";
+import PrivateRoute from "./PrivateRoute";
+import Users from "../Pages/Users";
+import Applications from "../Pages/Applications";
+import VideoApplications from "../Pages/VideoApplications";
 
 const Routers = createBrowserRouter([
   {
@@ -16,19 +20,35 @@ const Routers = createBrowserRouter([
       },
       {
         path: "/users",
-        element: <p>All Users</p>,
+        element: (
+          <PrivateRoute>
+            <Users />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/application-list",
-        element: <p>application-list</p>,
+        element: (
+          <PrivateRoute>
+            <Applications />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/add-application",
-        element: <AddApplications />,
+        element: (
+          <PrivateRoute>
+            <AddApplications />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/video-applications",
-        element: <p>Video Applications</p>,
+        element: (
+          <PrivateRoute>
+            <VideoApplications />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",
