@@ -1,4 +1,6 @@
+import axios from "axios";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 const AddApplications = () => {
   const {
@@ -9,7 +11,15 @@ const AddApplications = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    axios
+      .post("http://localhost:5000/applications", data)
+      .then((res) => {
+        if (res.data.insertedId) {
+          toast.success("Application submit successful.");
+          reset();
+        }
+      })
+      .catch((error) => console.log(error.message));
   };
 
   const handleCancel = () => {
@@ -88,18 +98,18 @@ const AddApplications = () => {
                 htmlFor="description"
                 className="block mb-2 font-medium text-gray-900 "
               >
-                Comments and/or questions
+                Comments
               </label>
               <textarea
                 type="text"
-                name="description"
+                name="comment"
                 rows={4}
-                id="description"
-                {...register("description", { required: true })}
+                id="comment"
+                {...register("comment", { required: true })}
                 className="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
                 placeholder="Write here"
               ></textarea>
-              {errors.description && (
+              {errors.comment && (
                 <span className="text-sm text-red-500">
                   This field is required
                 </span>

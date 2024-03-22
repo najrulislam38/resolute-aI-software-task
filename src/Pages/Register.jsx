@@ -26,7 +26,6 @@ const Register = () => {
     axios
       .post("http://localhost:5000/users", userInfo)
       .then((result) => {
-        console.log(result.data);
         if (result.data.insertedId) {
           createUser(email, password)
             .then((res) => {
