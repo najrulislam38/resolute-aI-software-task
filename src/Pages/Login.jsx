@@ -8,8 +8,6 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  console.log(location);
-
   const handleLogIn = (e) => {
     e.preventDefault();
     const form = e.target;

@@ -97,7 +97,7 @@ const AddApplications = () => {
                 id="description"
                 {...register("description", { required: true })}
                 className="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
-                placeholder="write here"
+                placeholder="Write here"
               ></textarea>
               {errors.description && (
                 <span className="text-sm text-red-500">

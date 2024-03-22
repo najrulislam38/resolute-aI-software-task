@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import toast from "react-hot-toast";
 import SocialLogin from "../components/SocialLogin";
+import axios from "axios";
 
 const Register = () => {
   const { createUser } = useAuth();
@@ -20,21 +21,28 @@ const Register = () => {
       name,
       phone,
       email,
-      password,
     };
 
-    createUser(email, password)
-      .then((res) => {
-        const user = res.user;
-        if (user.email) {
-          toast.success("Successfully Login!");
-          navigate("/");
+    axios
+      .post("http://localhost:5000/users", userInfo)
+      .then((result) => {
+        console.log(result.data);
+        if (result.data.insertedId) {
+          createUser(email, password)
+            .then((res) => {
+              const user = res.user;
+              if (user.email) {
+                toast.success("Successfully Login!");
+                navigate("/");
+              }
+              console.log(user);
+            })
+            .catch((error) => {
+              toast.error(`${error.message}`);
+            });
         }
-        console.log(user);
       })
-      .catch((error) => {
-        toast.error(`${error.message}`);
-      });
+      .catch((error) => console.log(error.message));
   };
 
   return (
