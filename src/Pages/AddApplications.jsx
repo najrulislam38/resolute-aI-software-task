@@ -12,7 +12,10 @@ const AddApplications = () => {
 
   const onSubmit = (data) => {
     axios
-      .post("http://localhost:5000/applications", data)
+      .post(
+        "https://resolute-ai-software-task-server.vercel.app/applications",
+        data
+      )
       .then((res) => {
         if (res.data.insertedId) {
           toast.success("Application submit successful.");

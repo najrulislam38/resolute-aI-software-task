@@ -7,13 +7,12 @@ const Users = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/users")
+      .get("https://resolute-ai-software-task-server.vercel.app/users")
       .then((res) => {
-        console.log(res.data);
         setUsers(res?.data);
       })
       .catch((error) => console.log(error.message));
-  });
+  }, []);
 
   return (
     <div className="overflow-x-auto rounded">

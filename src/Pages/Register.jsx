@@ -24,7 +24,10 @@ const Register = () => {
     };
 
     axios
-      .post("http://localhost:5000/users", userInfo)
+      .post(
+        "https://resolute-ai-software-task-server.vercel.app/users",
+        userInfo
+      )
       .then((result) => {
         if (result.data.insertedId) {
           createUser(email, password)
