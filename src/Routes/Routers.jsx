@@ -3,6 +3,7 @@ import App from "../App";
 import Home from "../Pages/Home";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
+import AddApplications from "../Pages/AddApplications";
 
 const Routers = createBrowserRouter([
   {
@@ -16,6 +17,14 @@ const Routers = createBrowserRouter([
       {
         path: "/users",
         element: <p>All Users</p>,
+      },
+      {
+        path: "/application-list",
+        element: <p>application-list</p>,
+      },
+      {
+        path: "/add-application",
+        element: <AddApplications />,
       },
       {
         path: "/video-applications",

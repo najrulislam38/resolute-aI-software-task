@@ -3,6 +3,8 @@ import {
   HomeIcon,
   UserGroupIcon,
   VideoCameraIcon,
+  ClipboardDocumentListIcon,
+  PlusCircleIcon,
 } from "@heroicons/react/24/solid";
 
 import logo from "../assets/images/logo.png";
@@ -44,6 +46,26 @@ const Sidebar = () => {
           }
         >
           <HomeIcon className="h-7 w-7 group-hover:text-white" />
+        </NavLink>
+        <NavLink
+          to="/add-application"
+          className={({ isActive }) =>
+            isActive
+              ? "p-2 rounded-2xl bg-primary text-white cursor-pointer"
+              : "p-2 rounded-2xl group hover:bg-primary text-secondary/80 cursor-pointer transition-all"
+          }
+        >
+          <PlusCircleIcon className="h-7 w-7 group-hover:text-white " />
+        </NavLink>
+        <NavLink
+          to="/application-list"
+          className={({ isActive }) =>
+            isActive
+              ? "p-2 rounded-2xl bg-primary text-white cursor-pointer"
+              : "p-2 rounded-2xl group hover:bg-primary text-secondary/80 cursor-pointer transition-all"
+          }
+        >
+          <ClipboardDocumentListIcon className="h-7 w-7 group-hover:text-white " />
         </NavLink>
         <NavLink
           to="/users"
